@@ -74,7 +74,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/upload_pic_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo"
@@ -84,7 +83,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/select_pic_register"
+            android:id="@+id/event_image"
             style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +92,7 @@
             android:layout_marginTop="10dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/register_button"
+            android:id="@+id/create"
             style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
