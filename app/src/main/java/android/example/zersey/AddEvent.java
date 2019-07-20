@@ -70,8 +70,7 @@ public class AddEvent extends AppCompatActivity {
                 } else if (storageTask != null && storageTask.isInProgress()) {
                     Toast.makeText(AddEvent.this, "Upload in progress. Please wait.", Toast.LENGTH_SHORT).show();
                 } else {
-                    DatabaseReference childNode = rootOfEvents.child("title");
-                    childNode.setValue(title);
+                    DatabaseReference childNode = rootOfEvents.child(title);
                     childNode.child("desc").setValue(desc);
                     childNode.child("category").setValue(cat);
                     childNode.child("image").setValue(imagePath);
