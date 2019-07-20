@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "98052235445",
+    "firebase_url": "https://zersey-c0cee.firebaseio.com",
+    "project_id": "zersey-c0cee",
+    "storage_bucket": "zersey-c0cee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98052235445:android:4a0c723ce8711e61",
+        "android_client_info": {
+          "package_name": "android.example.zersey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98052235445-odovoipvh2s2dh7c84fqvp5c0og66hkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjoXwOXGoffRK5_D_hhUDaXQvoMz5RlPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98052235445-odovoipvh2s2dh7c84fqvp5c0og66hkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
