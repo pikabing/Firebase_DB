@@ -28,7 +28,7 @@ public class AddEvent extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference rootOfEvents = databaseReference.child("events");
-    private String title, desc, cat, imagePath;
+    private String title, desc, cat, imagePath = "none";
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private StorageTask storageTask;
     @Override
@@ -71,9 +71,13 @@ public class AddEvent extends AppCompatActivity {
                     Toast.makeText(AddEvent.this, "Upload in progress. Please wait.", Toast.LENGTH_SHORT).show();
                 } else {
                     DatabaseReference childNode = rootOfEvents.child(title);
+                    childNode.child("title").setValue(title);
                     childNode.child("desc").setValue(desc);
                     childNode.child("category").setValue(cat);
                     childNode.child("image").setValue(imagePath);
+                    childNode.child("likes").setValue("0");
+                    childNode.child("comments").setValue("0");
+                    finish();
                 }
 
             }
@@ -92,7 +96,6 @@ public class AddEvent extends AppCompatActivity {
                 Toast.makeText(this, "Invalid. Please select from local storage only", Toast.LENGTH_SHORT).show();
                 return;
             }
-            imagePath = (uri.getPath().substring(uri.getPath().lastIndexOf("/") + 1));
             image.setEnabled(false);
             if (storageTask != null && storageTask.isInProgress()) {
                 Toast.makeText(this, "Uplaod in progress...", Toast.LENGTH_SHORT).show();
@@ -104,7 +107,8 @@ public class AddEvent extends AppCompatActivity {
 
     private void uploadImage(Uri uri) {
 
-        storageTask = storageReference.child(String.valueOf(System.currentTimeMillis())).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        imagePath = String.valueOf(System.currentTimeMillis());
+        storageTask = storageReference.child(imagePath).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(AddEvent.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
