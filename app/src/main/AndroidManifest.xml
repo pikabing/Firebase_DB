@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddEvent"/>
-
+        <activity android:name=".EventIndividual"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -3,6 +3,7 @@ package android.example.zersey;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,8 +16,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -31,6 +35,7 @@ public class AddEvent extends AppCompatActivity {
     private String title, desc, cat, imagePath = "none";
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private StorageTask storageTask;
+    long maxid = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,18 @@ public class AddEvent extends AppCompatActivity {
             }
         });
 
+        rootOfEvents.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                maxid = dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,12 +88,13 @@ public class AddEvent extends AppCompatActivity {
                     Toast.makeText(AddEvent.this, "Upload in progress. Please wait.", Toast.LENGTH_SHORT).show();
                 } else {
                     DatabaseReference childNode = rootOfEvents.child(title);
+                    childNode.child("id").setValue(maxid);
                     childNode.child("title").setValue(title);
                     childNode.child("desc").setValue(desc);
                     childNode.child("category").setValue(cat);
                     childNode.child("image").setValue(imagePath);
-                    childNode.child("likes").setValue("0");
-                    childNode.child("comments").setValue("0");
+                    childNode.child("likes").setValue(0);
+                    childNode.child("comments").setValue(0);
                     finish();
                 }
 

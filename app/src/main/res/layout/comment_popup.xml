@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/closePopup"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:textColor="@color/black"
+        android:text="X"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:fontFamily="@font/cairo"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        app:cardCornerRadius="10dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/inputStyle"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:hint="Write Comment..."
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="0dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/comment_on_event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine"
+                android:gravity="start"
+                android:imeOptions="actionDone"
+                android:textColor="@color/black"
+                android:fontFamily="@font/cairo"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/postComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="POST"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textSize="18sp"
+            android:fontFamily="@font/cairo"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

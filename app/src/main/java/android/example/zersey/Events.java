@@ -1,26 +1,53 @@
 package android.example.zersey;
 
-public class Events {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+
+public class Events implements Parcelable {
 
     public Events() {
 
     }
 
-    private String title, desc, category, image, likes, comments;
+    private String title, desc, category, image;
+    private long likes, comments;
 
-    public String getLikes() {
+    protected Events(Parcel in) {
+        title = in.readString();
+        desc = in.readString();
+        category = in.readString();
+        image = in.readString();
+        likes = in.readLong();
+        comments = in.readLong();
+    }
+
+    public static final Creator<Events> CREATOR = new Creator<Events>() {
+        @Override
+        public Events createFromParcel(Parcel in) {
+            return new Events(in);
+        }
+
+        @Override
+        public Events[] newArray(int size) {
+            return new Events[size];
+        }
+    };
+
+    public long getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(long likes) {
         this.likes = likes;
     }
 
-    public String getComments() {
+    public long getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
+    public void setComments(long comments) {
         this.comments = comments;
     }
 
@@ -54,5 +81,20 @@ public class Events {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(desc);
+        parcel.writeString(category);
+        parcel.writeString(image);
+        parcel.writeLong(likes);
+        parcel.writeLong(comments);
     }
 }
