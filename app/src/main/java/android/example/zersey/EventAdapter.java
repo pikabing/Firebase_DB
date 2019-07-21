@@ -97,7 +97,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             public void onClick(View view) {
                 Query query = FirebaseDatabase.getInstance().getReference().child("events").orderByChild("title").equalTo(events.getTitle());
                 long likes = events.getLikes();
-                if (!liked) {
+                if (!liked || likes==0) {
                     likes++;
                 } else {
                     likes--;
